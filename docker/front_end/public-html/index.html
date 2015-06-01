@@ -16,8 +16,13 @@
 			function refreshNodes() {
 			    $.getJSON('/api/message',
 			    function(data) {
+				var info = [];
+				$.each(data,
+				function(key,val) {
+					info.push('<li>' + val.author + ": " + val.auhor + " | N seq: " + val.sequence+ " | cookie: " + document.cookie + ' %</li>');
+				}
 			      
-			        $('#monitor').html( data.author);
+			        $('#monitor').html("<ul>" + info.join('') + "</ul>");
 			    });
 				var t=setTimeout("refreshNodes()", 1000);
 			}
